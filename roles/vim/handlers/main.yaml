@@ -1,0 +1,5 @@
+---
+- name: install-vim-plugins
+  tags:
+    - vim
+  shell: vim +PluginInstall +qall < /dev/tty > /dev/null
