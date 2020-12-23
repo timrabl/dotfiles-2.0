@@ -1,0 +1,25 @@
+---
+- name: Bootstrapping
+  hosts: all
+  vars:
+    params:
+      files:
+        - "{{ item }}"
+    paths:
+      - "host_vars"
+    with_items:
+      - "{{ groups['dotfiles'] }}"
+
+  tasks:
+    - name: Import dotfiles bootstrapping
+      import_role:
+        name: dotfiles
+
+    - name: Import dotfiles role
+      when: ansible_distribution | lower == 'macosx'
+      import_role:
+        name: brew
+
+    - name: Import vim role
+      import_role:
+        name: vim
