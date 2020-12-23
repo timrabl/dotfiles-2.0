@@ -1,0 +1,45 @@
+---
+- name: Check if required vars are defined
+  tags:
+    - check_vars
+  assert:
+    quiet: true
+    that:
+      - dotfiles.url
+      - dotfiles.destination
+
+- name: Get the remote dotfiles repository
+  tags:
+    - dotfiles
+  git:
+    repo: '{{ dotfiles.url }}'
+    dest: '{{ dotfiles.destination }}'
+    version: '{{ dotfiles.branch | default("main") }}'
+    accept_hostkey: True
+
+- name: Copy base dotfiles folder
+  tags:
+    - dotfiles
+  synchronize:
+    src: '{{ dotfiles.destination }}'
+    dest: '{{ lookup("env", "HOME") }}'
+  when:
+    - not dotfiles.options.os_specific and not dotfiles.options.version_specific
+
+- name: Copy os specific dotfiles folder
+  tags:
+    - dotfiles
+  synchronize:
+    src: '{{ dotfiles.destination }}/{{ ansible_distribution | lower }}'
+    dest: '{{ lookup("env", "HOME") }}'
+  when:
+    - dotfiles.options.os_specific and not dotfiles.options.version_specific
+
+- name: Copy os specific and version specific dotfiles folder
+  tags:
+    - dotfiles
+  synchronize:
+    src: '{{ dotfiles.destination }}/{{ ansible_distribution | lower }}/{{ ansible_distribution_version | lower }}'
+    dest: '{{ lookup("env", "HOME") }}'
+  when:
+    - dotfiles.options.os_specific and dotfiles.options.version_specific

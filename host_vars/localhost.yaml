@@ -1,0 +1,6 @@
+---
+dotfiles:
+  url: "https://github.com/timrabl/dotfiles.git"
+  destination: "/tmp/dotfiles"
+  branch: "main"
+  accept_hostkey: true

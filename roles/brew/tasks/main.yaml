@@ -1,0 +1,81 @@
+---
+- name: Check reuquired vars
+  tags:
+    - check_vars
+  assert:
+    quiet: true
+    that:
+      - brew.location is defined
+      - brew.cmd is defined
+
+- name: Check for brew
+  tags:
+    - brew
+  register: stat
+  changed_when: false
+  stat:
+    path: brew.location
+
+- name: Install homebrew
+  tags:
+    - brew
+  when: not stat
+  shell: brew.cmd
+
+- name: Updating homebrew
+  tags:
+    - brew
+  homebrew:
+    update_homebrew: true
+
+- name: Upgrade all homebrew packages
+  tags:
+    - brew
+  homebrew:
+    upgrade_all: true
+
+- name: Installing provided homebrew formulae
+  tags:
+    - brew
+  homebrew:
+    name: item
+    state: present
+  loop: '{{ brew.formulae.present }}'
+  when:
+    - brew.formulae.present is defined
+    - brew.formulae.present | length > 0
+
+- name: Removing unnecessary Homebrew formulae
+  tags:
+    - brew
+  homebrew:
+    name: item
+    state: absent
+  loop: '{{ brew.formulae.absent }}'
+  when:
+    - brew.formulae.absent is defined
+    - brew.formulae.absent | length > 0
+
+- name: Installing Homebrew casks
+  tags:
+    - brew
+  homebrew_cask:
+    name: item
+    state: present
+    accept_external_apps: true
+    install_options: "app_dir={{ brew.casks.app_dir }}"
+  loop: '{{ brew.casks.present }}'
+  when:
+    - brew.casks.present is defined
+    - brew.cask.present | length > 0
+
+- name: Removing unnecessary Homebrew casks
+  tags:
+    - brew
+  homebrew_cask:
+    name: item
+    state: absent
+  loop: '{{ brew.casks.absent }}'
+  when:
+    - brew.casks.absent is defined
+    - brew.cask.absent | length > 0

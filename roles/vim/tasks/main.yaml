@@ -1,0 +1,29 @@
+---
+- name: Ensure vim base folders
+  tags:
+    - vim
+  file:
+    path: "{{ lookup('env', 'HOME') }}/{{ item.path }}"
+    state: directory
+    owner: '{{ item.owner | default(ansible_ssh_user) }}'
+    group: '{{ item.group | default(group) }}'
+    mode: 0750
+  loop: '{{ vim.folders }}'
+
+- name: Get vim autoload configs
+  tags:
+    - vim
+  get_url:
+    url: '{{ item.url }}'
+    dest: "{{ lookup('env', 'HOME' ) }}/{{ item.dest }}"
+    owner: '{{ item.owner | default(ansible_ssh_user) }}'
+    group: '{{ item.group | default(group) }}'
+    mode: 0640
+  loop: '{{ vim.autoload }}'
+
+- name: Notify vim plugin handler
+  tags:
+    - vim
+  debug:
+    msg: "Notify vim plugin handler"
+  notify: install-vim-plugins
