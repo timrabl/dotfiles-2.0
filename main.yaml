@@ -1,16 +1,19 @@
 ---
 - name: Bootstrapping
   hosts: all
+  become: False
+
   vars:
-    params:
-      files:
-        - "{{ item }}"
-    paths:
-      - "host_vars"
-    with_items:
-      - "{{ groups['dotfiles'] }}"
+    group: >-
+      {% if ansible_distribution | lower == "macosx" %}staff{% else %}
+      {{ ansible_ssh_user }}{% endif %}
 
   tasks:
+    - name: Include host specific vars file
+      include_vars: 
+        dir: host_vars/
+        files_matching: "{{ ansible_hostname }}.yaml"
+
     - name: Import dotfiles bootstrapping
       import_role:
         name: dotfiles
@@ -23,3 +26,7 @@
     - name: Import vim role
       import_role:
         name: vim
+    
+    - name: Import vscode role
+      import_role:
+        name: vscode
