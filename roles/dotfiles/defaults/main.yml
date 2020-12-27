@@ -1,7 +1,7 @@
 ---
+# defaults file for dotfiles
 dotfiles:
-  url: "https://github.com/timrabl/dotfiles.git"
-  destination: "/tmp/dotfiles"
+  url: "https://github.com/timrabl/dotfiles-2.0.git"
   branch: "main"
   options:
     os_specific: True
