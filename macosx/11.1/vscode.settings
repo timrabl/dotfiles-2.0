@@ -1,5 +1,3 @@
-# vim: syntax=json
-
 {
     /* Explorer section */
     "explorer.confirmDelete": false,
