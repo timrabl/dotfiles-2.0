@@ -1,0 +1,6 @@
+---
+# handlers file for vim
+- name: Install plugins
+  tags:
+    - vim
+  shell: vim +PluginInstall +qall < /dev/tty > /dev/null
