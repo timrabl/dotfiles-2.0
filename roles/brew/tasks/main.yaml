@@ -1,20 +1,11 @@
 ---
-- name: Check required vars
-  tags:
-    - check_vars
-  assert:
-    quiet: true
-    that:
-      - brew.location is defined
-      - brew.cmd is defined
-
 - name: Check for brew
   tags:
     - brew
   register: stat
   changed_when: false
   stat:
-    path: brew.location
+    path: "{{ brew.location | default('/usr/local/bin/brew') }}"
 
 - name: Install homebrew
   tags:
@@ -26,56 +17,44 @@
   tags:
     - brew
   homebrew:
-    update_homebrew: true
+    update_homebrew: True
 
 - name: Upgrade all homebrew packages
   tags:
     - brew
   homebrew:
-    upgrade_all: true
+    upgrade_all: True
 
-- name: Installing provided homebrew formulae
+- name: Register installed formulae
+  tags:
+    - brew
+  register: installed_formulae
+  shell: "brew list --formulae | sed 's/\t/\r/g'"
+  changed_when: False
+
+- name: Register installed casks
+  tags:
+    - brew
+  register: installed_casks
+  shell: "brew list --casks | sed 's/\t/\r/g'"
+  changed_when: False
+
+- name: Processing formulae
   tags:
     - brew
   homebrew:
-    name: item
-    state: present
-  loop: "{{ brew.formulae.present }}"
-  when:
-    - brew.formulae.present is defined
-    - brew.formulae.present | length > 0
+    name: "{{ item.name }}"
+    state: "{% if item.state is defined %}item.state{% else %}present{% endif %}"
+  when: item.name not in installed_formulae.stdout_lines
+  loop: "{{ brew.formulae }}"
 
-- name: Removing unnecessary Homebrew formulae
-  tags:
-    - brew
-  homebrew:
-    name: item
-    state: absent
-  loop: "{{ brew.formulae.absent }}"
-  when:
-    - brew.formulae.absent is defined
-    - brew.formulae.absent | length > 0
-
-- name: Installing Homebrew casks
+- name: Processing casks
   tags:
     - brew
   homebrew_cask:
-    name: item
-    state: present
-    accept_external_apps: true
-    install_options: "app_dir={{ brew.casks.app_dir }}"
-  loop: "{{ brew.casks.present }}"
-  when:
-    - brew.casks.present is defined
-    - brew.cask.present | length > 0
-
-- name: Removing unnecessary Homebrew casks
-  tags:
-    - brew
-  homebrew_cask:
-    name: item
-    state: absent
-  loop: "{{ brew.casks.absent }}"
-  when:
-    - brew.casks.absent is defined
-    - brew.cask.absent | length > 0
+    name: "{{ item.name }}"
+    state: "{% if item.state is defined %}item.state{% else %}absent{% endif %}"
+    accept_external_apps: True
+    install_options: "app_dir={{ brew.app_dir | default(lookup('env', 'HOME') + '/Applications') }}"
+  when: item.name not in installed_casks.stdout_lines
+  loop: "{{ brew.casks }}"

@@ -1,13 +1,11 @@
 ---
 brew:
   location: "/usr/local/bin/brew"
+  app_dir: "~/Applications/" 
   cmd: >-
     "/bin/bash -c $(curl -fsSL https://raw.githubusercontent.com/
     Homebrew/install/master/install.sh)"
   formulae:
-    present: []
-    absent: []
+#    - { name: "example", state: "present"}
   casks:
-    app_dir: "~/Applications/"
-    present: []
-    absent: []
+#    - { name: "example", state: "present"}
