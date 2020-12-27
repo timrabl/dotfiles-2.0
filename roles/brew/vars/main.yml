@@ -1,0 +1,9 @@
+---
+# vars file for brew
+install_cmd: "/bin/bash -c $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+install_location: "/usr/local/bin/brew"
+
+list_formulae: "brew list --formulae | sed 's/\t/\r/g'"
+list_casks: "brew list --casks | sed 's/\t/\r/g'"
+
+casks_app_dir: "~/Applications"

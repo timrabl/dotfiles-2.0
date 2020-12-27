@@ -1,17 +1,20 @@
 ---
-- name: Check for brew
+# tasks file for brew
+- name: Check for existing homebrew installation
   tags:
     - brew
   register: stat
   changed_when: false
   stat:
-    path: "{{ brew.location | default('/usr/local/bin/brew') }}"
+    path: "{{ brew.location | default(install_location) }}"
 
 - name: Install homebrew
   tags:
     - brew
   when: not stat
-  shell: brew.cmd
+  debug:
+    msg: ""
+  notify: Install homebrew
 
 - name: Updating homebrew
   tags:
@@ -28,15 +31,15 @@
 - name: Register installed formulae
   tags:
     - brew
-  register: installed_formulae
-  shell: "brew list --formulae | sed 's/\t/\r/g'"
+  register: formulae
+  shell: "{{ list_formulae }}"
   changed_when: False
 
 - name: Register installed casks
   tags:
     - brew
-  register: installed_casks
-  shell: "brew list --casks | sed 's/\t/\r/g'"
+  register: casks
+  shell: "{{ list_casks }}"
   changed_when: False
 
 - name: Processing formulae
@@ -44,8 +47,9 @@
     - brew
   homebrew:
     name: "{{ item.name }}"
-    state: "{% if item.state is defined %}item.state{% else %}present{% endif %}"
-  when: item.name not in installed_formulae.stdout_lines
+    state: "{{ item.state | default('present') }}"
+  when:
+    - item.name not in formulae.stdout_lines
   loop: "{{ brew.formulae }}"
 
 - name: Processing casks
@@ -53,8 +57,9 @@
     - brew
   homebrew_cask:
     name: "{{ item.name }}"
-    state: "{% if item.state is defined %}item.state{% else %}absent{% endif %}"
+    state: "{{ item.state | default('present') }}"
     accept_external_apps: True
-    install_options: "app_dir={{ brew.app_dir | default(lookup('env', 'HOME') + '/Applications') }}"
-  when: item.name not in installed_casks.stdout_lines
+    install_options: "app_dir={{ brew.casks_app_dir | default(casks_app_dir) }}"
+  when:
+    - item.name not in casks.stdout_lines
   loop: "{{ brew.casks }}"
