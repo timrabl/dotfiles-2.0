@@ -1,6 +1,45 @@
 ---
 dotfiles:
-  url: "https://github.com/timrabl/dotfiles.git"
+  url: "https://github.com/timrabl/dotfiles-2.0.git"
   destination: "/tmp/dotfiles"
   branch: "main"
   accept_hostkey: true
+  options:
+    os_specific: True
+    version_specific: True
+
+vscode:
+  extensions:
+    - { name: "bobsparadox.seti-black" }
+    - { name: "christian-kohler.path-intellisense" }
+    - { name: "DavidAnson.vscode-markdownlint" }
+    - { name: "DotJoshJohnson.xml" }
+    - { name: "eamodio.gitlens" }
+    - { name: "ecmel.vscode-html-css" }
+    - { name: "esbenp.prettier-vscode" }
+    - { name: "golang.go" }
+    - { name: "JCsoftIA.jcsoftia" }
+    - { name: "mikestead.dotenv" }
+    - { name: "mrmlnc.vscode-apache" }
+    - { name: "ms-azuretools.vscode-docker" }
+    - { name: "ms-kubernetes-tools.vscode-kubernetes-tools" }
+    - { name: "ms-python.python" }
+    - { name: "ms-python.vscode-pylance" }
+    - { name: "ms-toolsai.jupyter" }
+    - { name: "ms-vscode-remote.remote-containers" }
+    - { name: "ms-vscode-remote.remote-ssh" }
+    - { name: "ms-vscode-remote.remote-ssh-edit" }
+    - { name: "msjsdiag.debugger-for-chrome" }
+    - { name: "Nimda.deepdark-material" }
+    - { name: "Nur.just-black" }
+    - { name: "PKief.material-icon-theme" }
+    - { name: "redhat.vscode-yaml" }
+    - { name: "samuelcolvin.jinjahtml" }
+    - { name: "SmukkeKim.theme-setimonokai" }
+    - { name: "streetsidesoftware.code-spell-checker" }
+    - { name: "VisualStudioExptTeam.vscodeintellicode" }
+    - { name: "vscode-icons-team.vscode-icons" }
+    - { name: "vscodevim.vim" }
+    - { name: "vscoss.vscode-ansible" }
+    - { name: "yzhang.markdown-all-in-one" }
+    - { name: "Zignd.html-css-class-completion" }
