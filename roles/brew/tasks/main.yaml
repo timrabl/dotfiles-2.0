@@ -1,5 +1,5 @@
 ---
-- name: Check reuquired vars
+- name: Check required vars
   tags:
     - check_vars
   assert:
@@ -40,7 +40,7 @@
   homebrew:
     name: item
     state: present
-  loop: '{{ brew.formulae.present }}'
+  loop: "{{ brew.formulae.present }}"
   when:
     - brew.formulae.present is defined
     - brew.formulae.present | length > 0
@@ -51,7 +51,7 @@
   homebrew:
     name: item
     state: absent
-  loop: '{{ brew.formulae.absent }}'
+  loop: "{{ brew.formulae.absent }}"
   when:
     - brew.formulae.absent is defined
     - brew.formulae.absent | length > 0
@@ -64,7 +64,7 @@
     state: present
     accept_external_apps: true
     install_options: "app_dir={{ brew.casks.app_dir }}"
-  loop: '{{ brew.casks.present }}'
+  loop: "{{ brew.casks.present }}"
   when:
     - brew.casks.present is defined
     - brew.cask.present | length > 0
@@ -75,7 +75,7 @@
   homebrew_cask:
     name: item
     state: absent
-  loop: '{{ brew.casks.absent }}'
+  loop: "{{ brew.casks.absent }}"
   when:
     - brew.casks.absent is defined
     - brew.cask.absent | length > 0

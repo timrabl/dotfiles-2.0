@@ -1,0 +1,13 @@
+---
+brew:
+  location: "/usr/local/bin/brew"
+  cmd: >-
+    "/bin/bash -c $(curl -fsSL https://raw.githubusercontent.com/
+    Homebrew/install/master/install.sh)"
+  formulae:
+    present: []
+    absent: []
+  casks:
+    app_dir: "~/Applications/"
+    present: []
+    absent: []
