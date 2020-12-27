@@ -1,0 +1,17 @@
+---
+- name: Install vscode extensions
+  tags:
+    - vscode
+  when:
+    - vscode.extensions is defined
+  command: 'code {% if item.state is defined and item.state == "absent" %}--remove-extensions{% else %}--install-extension{% endif %} {{ item.name }}'
+  loop: "{{ vscode.extensions }}"
+
+- name: Install vscode settings
+  ignore_errors: True
+  tags:
+    - vscode
+  copy:
+    src: '{{ lookup("file", home + "/" + "vscode.extensions", errors="warn" ) }}'
+    dest: '{{ home }}{{ settings.destination.dir }}{{ settings.destination.filename }}'
+    
