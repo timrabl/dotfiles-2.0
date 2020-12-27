@@ -15,7 +15,7 @@ Role Variables
 
 **Type:** dict  
 **Default:** { folders: ..., autoload: ... }  
-**Description:** dict containing folders and autoload sub list of dicts  
+**Description:** Dict containing sub list and dicts.  
 **Example:**  
 
 ```yaml
@@ -30,7 +30,7 @@ vim:
 
 **Type:** list  
 **Default:** none  
-**Description:** List of dicts containing folders paths  
+**Description:** List of dicts containing folders paths.  
 **Example:**  
 
 ```yaml
@@ -45,7 +45,7 @@ vim:
 
 **Type:** list  
 **Default:** none  
-**Description:** List of remote autoload config files  
+**Description:** List of remote autoload config files.  
 **Example:**  
 
 ```yaml

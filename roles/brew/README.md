@@ -15,7 +15,7 @@ Role Variables
 
 **Type:** dict  
 **Default:** { formulae: ..., casks: ... }  
-**Description:** dict containing formulae and casks sub list of dicts  
+**Description:** Dict containing sub list and dicts.  
 **Example:**  
 
 ```yaml
@@ -30,7 +30,7 @@ brew:
 
 **Type:** list  
 **Default:** none  
-**Description:** List of sub dictionaries containing the formulae name and state  
+**Description:** List of sub dictionaries containing the formulae name and state.  
 **Example:**  
 
 ```yaml
@@ -46,7 +46,7 @@ brew:
 
 **Type:** list  
 **Default:** none
-**Description:** List of sub dictionaries containing the casks name and state  
+**Description:** List of sub dictionaries containing the casks name and state.  
 **Example:**  
 
 ```yaml
@@ -61,7 +61,7 @@ brew:
 
 **Type:** str  
 **Default:**   `/bin/bash -c $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)`  
-**Description:** The shell install command for installing homebrew  
+**Description:** The shell install command for installing homebrew.  
 
 ### install_location
 
@@ -73,19 +73,19 @@ brew:
 
 **Type:** str  
 **Default:**  `brew list --formulae | sed 's/\t/\r/g`  
-**Description:** The command used for gathering the installed formulae  
+**Description:** The command used for gathering the installed formulae.  
 
 ### list_casks
 
 **Type:** str  
 **Default:**  `brew list --casks | sed 's/\t/\r/g`  
-**Description:** The command used for gathering the installed casks  
+**Description:** The command used for gathering the installed casks.  
 
 ### casks_app_dir
 
 **Type:** str  
 **Default:**  `~/Applications`  
-**Description:** The default casks install directory  
+**Description:** The default casks install directory.  
 
 Example Playbook
 ----------------

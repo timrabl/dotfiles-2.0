@@ -14,7 +14,7 @@ Role Variables
 
 **Type:** dict  
 **Default:** { extensions: ..., settings: ... }  
-**Description:** dict containing extensions and settings 
+**Description:** Dict containing sub lists and dicts.   
 **Example:**  
 
 ```yaml
@@ -42,7 +42,7 @@ extensions:
 
 *Type:* dict  
 *Default:* { source: ..., destination: ... }  
-*Description:* Parent dict for source and destination  
+*Description:* Parent dict for source and destination.  
 *Example:*  
 
 ```yaml
@@ -57,7 +57,7 @@ settings:
 
 *Type:* str  
 *Default:* $HOME/vscode.settings  
-*Description:*  The path of the source settings file  
+*Description:*  The path of the source settings file.  
 *Example:*  
 
 ```yaml
@@ -69,7 +69,7 @@ settings:
 ### destination
 *Type:* str  
 *Default:* OS dependent, see vars/main.yaml for detailed paths.  
-*Description:* Path for global / user specific vscode settings  
+*Description:* Path for global / user specific vscode settings.  
 
 Example Playbook
 ----------------
