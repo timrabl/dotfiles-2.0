@@ -1,0 +1,14 @@
+---
+# defaults file for vscode
+
+# extensions:
+#    - { name: "example-present", state: "present"}
+#    - { name: "example-absent", state: "absent"}
+
+settings:
+  source: "{{ lookup('env', 'HOME') }}/vscode.settings"
+  destination: |
+    {{ lookup('env', 'HOME') }}
+    {% if ansible_distribution | lower == "macosx" %}/Library/Application Support/Code/User/settings.json
+    {% else %}/.config/Code/User/settings.json
+    {% endif %}
