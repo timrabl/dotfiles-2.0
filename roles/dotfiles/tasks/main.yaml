@@ -21,8 +21,8 @@
   tags:
     - dotfiles
   synchronize:
-    src: "{{ dotfiles.destination }}"
-    dest: "{{ lookup('env', 'HOME') }}"
+    src: "{{ dotfiles.destination }}/"
+    dest: "{{ lookup('env', 'HOME') }}/"
   when:
     - not dotfiles.options.os_specific
     - not dotfiles.options.version_specific
@@ -31,8 +31,8 @@
   tags:
     - dotfiles
   synchronize:
-    src: "{{ dotfiles.destination }}/{{ ansible_distribution | lower }}"
-    dest: "{{ lookup('env', 'HOME') }}"
+    src: "{{ dotfiles.destination }}/{{ ansible_distribution | lower }}/"
+    dest: "{{ lookup('env', 'HOME') }}/"
   when:
     - dotfiles.options.os_specific
     - not dotfiles.options.version_specific
@@ -41,8 +41,8 @@
   tags:
     - dotfiles
   synchronize:
-    src: "{{ dotfiles.destination }}/{{ ansible_distribution | lower }}/{{ ansible_distribution_version | lower }}"
-    dest: "{{ lookup('env', 'HOME') }}"
+    src: "{{ dotfiles.destination }}/{{ ansible_distribution | lower }}/{{ ansible_distribution_version | lower }}/"
+    dest: "{{ lookup('env', 'HOME') }}/"
   when:
     - dotfiles.options.os_specific
     - dotfiles.options.version_specific
