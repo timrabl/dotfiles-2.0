@@ -1,8 +1,0 @@
----
-dotfiles:
-  url: 'https://github.com/timrabl/dotfiles.git'
-  destination: '/tmp/dotfiles'
-  branch: 'main'
-  options:
-    os_specific: True
-    version_specific: True
