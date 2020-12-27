@@ -1,5 +1,5 @@
 ---
-- name: Check if required vars are defined
+- name: Check required vars
   tags:
     - check_vars
   assert:
@@ -8,38 +8,41 @@
       - dotfiles.url
       - dotfiles.destination
 
-- name: Get the remote dotfiles repository
+- name: Clone dotfiles repositories
   tags:
     - dotfiles
   git:
-    repo: '{{ dotfiles.url }}'
-    dest: '{{ dotfiles.destination }}'
-    version: '{{ dotfiles.branch | default("main") }}'
+    repo: "{{ dotfiles.url }}"
+    dest: "{{ dotfiles.destination }}"
+    version: "{{ dotfiles.branch | default('main') }}"
     accept_hostkey: True
 
-- name: Copy base dotfiles folder
+- name: Copy dotfiles to home folder
   tags:
     - dotfiles
   synchronize:
-    src: '{{ dotfiles.destination }}'
-    dest: '{{ lookup("env", "HOME") }}'
+    src: "{{ dotfiles.destination }}"
+    dest: "{{ lookup('env', 'HOME') }}"
   when:
-    - not dotfiles.options.os_specific and not dotfiles.options.version_specific
+    - not dotfiles.options.os_specific
+    - not dotfiles.options.version_specific
 
-- name: Copy os specific dotfiles folder
+- name: Copy OS specific dotfiles to home folder
   tags:
     - dotfiles
   synchronize:
-    src: '{{ dotfiles.destination }}/{{ ansible_distribution | lower }}'
-    dest: '{{ lookup("env", "HOME") }}'
+    src: "{{ dotfiles.destination }}/{{ ansible_distribution | lower }}"
+    dest: "{{ lookup('env', 'HOME') }}"
   when:
-    - dotfiles.options.os_specific and not dotfiles.options.version_specific
+    - dotfiles.options.os_specific
+    - not dotfiles.options.version_specific
 
-- name: Copy os specific and version specific dotfiles folder
+- name: Copy OS / version specific dotfiles to home folder
   tags:
     - dotfiles
   synchronize:
-    src: '{{ dotfiles.destination }}/{{ ansible_distribution | lower }}/{{ ansible_distribution_version | lower }}'
-    dest: '{{ lookup("env", "HOME") }}'
+    src: "{{ dotfiles.destination }}/{{ ansible_distribution | lower }}/{{ ansible_distribution_version | lower }}"
+    dest: "{{ lookup('env', 'HOME') }}"
   when:
-    - dotfiles.options.os_specific and dotfiles.options.version_specific
+    - dotfiles.options.os_specific
+    - dotfiles.options.version_specific
