@@ -18,7 +18,7 @@
       import_role:
         name: dotfiles
 
-    - name: Import dotfiles role
+    - name: Import brew role
       when: ansible_distribution | lower == 'macosx'
       import_role:
         name: brew

@@ -108,9 +108,6 @@ nnoremap <Leader>- :vertical resize -5<CR>
 nnoremap <Leader>mm odef main():<CR>pass<CR><CR>if __name == '__main__':<CR>main()<esc>kkI<esc>
 nnoremap <Leader>jj :%! jq --tab .<CR>
 
-vnoremap j :m '>+1<cr>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-
 nnoremap <leader>vwm :colorscheme gruvbox-material<bar>:set background=dark<CR>
 nmap <leader>vtm :highlight Pmenu ctermbg=0 guibg=lightgray
 
