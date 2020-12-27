@@ -1,7 +1,7 @@
 ---
-# tasks file for roles/vscode-new
+# tasks file for vscode
 - name: Get installed vscode extensions
-  register: installed
+  register: extensions
   tags:
     - vscode
   command: "code --list-extensions"
@@ -11,17 +11,17 @@
   tags:
     - vscode
   when:
-    - item.name not in installed.stdout_lines
+    - item.name not in extensions.stdout_lines
   command: |
     code {% if item.state == "absent" %}--remove-extensions
     {% else %}--install-extension
     {% endif %} {{ item.name }}
-  loop: "{{ extensions }}"
+  loop: "{{ vscode.extensions }}"
 
-- name: Install vscode settings
+- name: Ensure vscode settings
   tags:
     - vscode
   copy:
-    src: "{{ settings.source }}"
-    dest: "{{ settings.destination }}"
+    src: "{{ vscode.settings.source }}"
+    dest: "{{ destination }}"
     remote_src: True

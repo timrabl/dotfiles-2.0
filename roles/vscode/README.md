@@ -10,11 +10,25 @@ Visual Studio Code
 
 Role Variables
 --------------
+### vscode
 
-### extensions
+**Type:** dict  
+**Default:** { extensions: ..., settings: ... }  
+**Description:** dict containing extensions and settings 
+**Example:**  
+
+```yaml
+vscode:
+  extensions:
+    ...
+  settings:
+    ...
+```
+
+### vscode.extensions
 
 *Type:* list  
-*Default:* empty  
+*Default:* none  
 *Description:* A list of dictionaries, each dict contains the extensions name and state.  
 *Example:*  
 
@@ -24,7 +38,7 @@ extensions:
   - { name: "sample-absent", state: "absent"}
 ```
 
-### settings
+### vscode.settings
 
 *Type:* dict  
 *Default:* { source: ..., destination: ... }  
@@ -39,7 +53,7 @@ settings:
     ...
 ```
 
-### settings.source
+### vscode.settings.source
 
 *Type:* str  
 *Default:* $HOME/vscode.settings  
@@ -52,16 +66,10 @@ settings:
 ...
 ```
 
-### settings.destination
+### destination
 *Type:* str  
-*Default:* OS dependent, see defaults/main.yaml for detailed paths.  
+*Default:* OS dependent, see vars/main.yaml for detailed paths.  
 *Description:* Path for global / user specific vscode settings  
-*Example:*  
-
-```yaml
-...
-  destination: "/example/path/to/your/destination/settings/file"
-```
 
 Example Playbook
 ----------------

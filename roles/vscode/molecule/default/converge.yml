@@ -2,6 +2,6 @@
 - name: Converge
   hosts: all
   tasks:
-    - name: "Include vscode-new"
+    - name: "Include vscode"
       include_role:
         name: "vscode"
