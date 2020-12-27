@@ -2,16 +2,11 @@
 - name: Bootstrapping
   hosts: all
   become: False
-
-  vars:
-    group: >-
-      {% if ansible_distribution | lower == "macosx" %}staff{% else %}
-      {{ ansible_ssh_user }}{% endif %}
-
+  gather_facts: True
   tasks:
     - name: Include host specific vars file
       include_vars: 
-        dir: host_vars/
+        dir: ../host_vars/
         files_matching: "{{ ansible_hostname }}.yaml"
 
     - name: Import dotfiles bootstrapping
@@ -26,7 +21,7 @@
     - name: Import vim role
       import_role:
         name: vim
-    
+
     - name: Import vscode role
       import_role:
         name: vscode

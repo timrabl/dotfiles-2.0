@@ -1,0 +1,27 @@
+---
+dotfiles:
+  url: "https://github.com/timrabl/dotfiles-2.0.git"
+  branch: "main"
+  options:
+    os_specific: True
+    version_specific: True
+
+vim:
+  folders:
+    - { path: ".vim" }
+    - { path: ".vim/autoload" }
+    - { path: ".vim/plugged" }
+  autoload:
+    - { url: "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim", dest: ".vim/autoload/plug.vim" }
+
+brew:
+  casks:
+    - { name: "example-present" }
+  formulae:
+    - { name: "example-present" }
+
+vscode:
+  settings:
+    source: "{{ lookup('env', 'HOME') }}/vscode.settings"
+  extensions:
+    - { name: "example-plugin-present" }

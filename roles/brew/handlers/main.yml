@@ -1,0 +1,6 @@
+---
+# handlers file for brew
+- name: Install homebrew
+  tags:
+    - brew
+  shell: install_cmd

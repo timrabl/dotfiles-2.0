@@ -2,6 +2,6 @@
 - name: Converge
   hosts: all
   tasks:
-    - name: "Include vscode"
+    - name: "Include brew"
       include_role:
-        name: "vscode"
+        name: "brew"
