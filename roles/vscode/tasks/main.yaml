@@ -4,6 +4,7 @@
   tags:
     - vscode
   command: "code --list-extensions"
+  changed_when: False
 
 - name: Install vscode extensions
   tags:
