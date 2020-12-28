@@ -1,0 +1,22 @@
+---
+# tasks file for grub
+- name: Check for existing GRUB config
+  become: true
+  tags:
+    - grub
+  register: config
+  stat:
+    path: "{{ config_path }}"
+  changed_when: false
+
+- name: Ensure "GRUB_CMDLINE_LINUX" contains provided args
+  become: true
+  lineinfile:
+    path: "{{ config_path }}"
+    regexp: "^GRUB_CMDLINE_LINUX="
+    line: "GRUB_CMDLINE_LINUX=\"{{ grub.cmdline_linux | join(' ') }}\""
+  notify:
+    - Rebuild GRUB
+
+- name: Flush Rebuild GRUB handler
+  meta: flush_handlers
