@@ -17,12 +17,14 @@
     dest: "{{ destination }}"
     version: "{{ dotfiles.branch }}"
     accept_hostkey: True
-    
+
 - name: Synchronize dotfiles with home folder
   tags:
     - dotfiles
   synchronize:
     src: >-
-      {{ destination }}/{% if dotfiles.options.os_specific %}{{ ansible_distribution | lower }}/{% endif %}{% if dotfiles.options.version_specific %}{{ ansible_distribution_version | lower }}/{% endif %}
+      {{ destination }}/
+      {%- if dotfiles.options.os_specific -%}{{ ansible_distribution | lower }}/{%- endif -%}
+      {%- if dotfiles.options.version_specific -%}{{ ansible_distribution_version | lower }}/{%- endif -%}
     dest: "{{ ansible_env.HOME }}/"
   delegate_to: "{{ inventory_hostname }}"

@@ -1,2 +1,14 @@
+# General excludes
 .DS_Store
 .vscode
+
+# Debugging excludes
+**/debug*
+
+# Exclude inventoy files except exmamples
+inventory/**
+!inventory/example
+
+# Exclude host_vars files except example files
+host_vars/**
+!host_vars/srv01.example.org.yaml

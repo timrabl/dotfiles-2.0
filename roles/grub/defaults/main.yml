@@ -1,0 +1,5 @@
+---
+# defaults file for grub
+grub:
+  config: /etc/default/grub
+  cmdline_linux: []

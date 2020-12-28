@@ -1,0 +1,20 @@
+---
+- name: Import GRUB role
+  import_role:
+    name: grub
+
+- name: Import systemd-networkd role
+  import_role:
+    name: systemd-networkd
+
+- name: Import dotfiles role
+  import_role:
+    name: dotfiles
+
+- name: Import vim role
+  import_role:
+    name: vim
+
+- name: Import vscode role
+  import_role:
+    name: vscode

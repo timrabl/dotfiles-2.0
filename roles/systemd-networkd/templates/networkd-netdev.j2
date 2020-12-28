@@ -1,0 +1,17 @@
+{% if item.value.netdev.match is defined %}
+[Match]
+{% for option, value in item.value.netdev.match.items() %}
+{% if option in netdev_match_valid %}
+{{ option }}={{ value }}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% if item.value.netdev.netdev is defined %}
+[NetDev]
+{% for option, value in item.value.netdev.netdev.items() %}
+{% if option in netdev_netdev_valid %}
+{{ option }}={{ value }}
+{% endif %}
+{% endfor %}
+{% endif %}

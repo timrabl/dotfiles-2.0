@@ -5,23 +5,22 @@
   gather_facts: True
   tasks:
     - name: Include host specific vars file
-      include_vars: 
+      include_vars:
         dir: ../host_vars/
         files_matching: "{{ ansible_hostname }}.yaml"
 
-    - name: Import dotfiles role
-      import_role:
-        name: dotfiles
-
-    - name: Import brew role
-      when: ansible_distribution | lower == 'macosx'
-      import_role:
-        name: brew
-
-    - name: Import vim role
-      import_role:
-        name: vim
-
-    - name: Import vscode role
-      import_role:
-        name: vscode
+    - name: Import MacOSX version 11.1 tasks list
+      tags:
+        - macosx
+      when:
+        - ansible_distribution | lower == "macosx"
+        - ansible_distribution_version | lower == "11.1"
+      import_tasks: "../tasks/bootstrap_macosx_11.1.yaml"
+    
+    - name: Import Ubuntu version 20.04 tasks list
+      tags:
+        - ubuntu
+      when:
+        - ansible_distribution | lower == "ubuntu"
+        - ansible_distribution_version | lower == "20.04"
+      import_tasks: "../tasks/bootstrap_ubuntu_20.04.yaml"

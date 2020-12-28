@@ -1,0 +1,60 @@
+---
+# tasks file for systemd-networkd
+- name: Check for existing ifupdown interfaces file
+  tags:
+    - systemd-networkd
+  become: true
+  register: ifupdown
+  stat:
+    path: "{{ ifupdown_path }}/interfaces"
+
+- name: Remove ifupdown interfaces file
+  tags:
+    - systemd-networkd
+  become: true
+  when: ifupdown.stat.exists
+  file:
+    path: "{{ ifupdown_path }}/interfaces"
+    state: absent
+
+- name: Render systemd-networkd link files
+  become: true
+  template:
+    src: ../templates/networkd-link.j2
+    dest: "{{ networkd_path }}/{{ item.key }}.link"
+    owner: "{{ owner }}"
+    group: "{{ group }}"
+    mode: "{{ mode }}"
+  when: item.value.link is defined
+  loop: "{{ networkd.interfaces | dict2items }}"
+  notify:
+    - Restart systemd-networkd
+
+- name: Render systemd-networkd netdev files
+  become: true
+  template:
+    src: ../templates/networkd-netdev.j2
+    dest: "{{ networkd_path }}/{{ item.key }}.netdev"
+    owner: "{{ owner }}"
+    group: "{{ group }}"
+    mode: "{{ mode }}"
+  when: item.value.netdev is defined
+  loop: "{{ networkd.interfaces | dict2items }}"
+  notify:
+    - Restart systemd-networkd
+
+- name: Render systemd-networkd network files
+  become: true
+  template:
+    src: ../templates/networkd-network.j2
+    dest: "{{ networkd_path }}/{{ item.key }}.network"
+    owner: "{{ owner }}"
+    group: "{{ group }}"
+    mode: "{{ mode }}"
+  when: item.value.network is defined
+  loop: "{{ networkd.interfaces | dict2items }}"
+  notify:
+    - Restart systemd-networkd
+  
+- name: Flush restart handlers
+  meta: flush_handlers

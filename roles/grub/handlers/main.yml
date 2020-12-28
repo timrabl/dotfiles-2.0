@@ -1,0 +1,7 @@
+---
+# handlers file for grub
+- name: Rebuild GRUB
+  become: true
+  tags:
+    - grub
+  command: /usr/sbin/update-grub

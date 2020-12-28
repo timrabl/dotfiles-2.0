@@ -1,6 +1,6 @@
 galaxy_info:
   author: Tim Oliver Rabl
-  description: Visual Studio Code dotfiles bootstrap
+  description: systemd-networkd ansible role
 
   license: MIT
 
@@ -10,11 +10,11 @@ galaxy_info:
   # min_ansible_container_version:
 
   platforms:
-    - name: macOS
+    - name: Ubuntu 
       versions:
         - all
 
   galaxy_tags:
-    - vscode
+    - systemd-networkd
 
 dependencies: []

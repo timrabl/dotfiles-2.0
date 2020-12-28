@@ -1,0 +1,73 @@
+---
+# vars file for systemd-networkd
+owner: "root"
+group: "systemd-network"
+mode: 0640
+
+ifupdown_path: "/etc/network/"
+networkd_path: "/etc/systemd/network"
+
+# Valid match options for link files
+link_match_valid:
+  - MACAddress
+  - Host
+  - Virtualization
+  - Type
+
+# Valid Link options for link files
+link_link_valid:
+  - Name
+  - WakeOnLan
+  - MACAddressPolicy
+  - MACAddress
+  - NamePolicy
+
+# Valid Match options for netdev files
+netdev_match_valid:
+  - Host
+  - Virtualization
+
+# Valid NetDev options for netdev files
+netdev_netdev_valid:
+  - Name
+  - Kind
+
+# Valid Match options for network files
+network_match_valid:
+  - Name
+  - MACAddress
+  - Host
+  - Virtualization
+
+# Valid Link options for network files
+network_link_valid:
+  - MACAddress
+  - MTUBytes
+  - Multicast
+
+# Valid Network options for network files
+network_network_valid:
+  - DHCP
+  - DHCPServer
+  - MulticastDNS
+  - DNSSEC
+  - DNS
+  - Domains
+  - IPForward
+  - IPMasquerade
+  - IPv6PrivacyExtensions
+
+# Valid Address options for network files
+network_address_valid:
+  - Address
+
+# Valid Route options for network files
+network_route_valid:
+  - Gateway
+  - Destination
+
+# Valid DHCP options for network files
+network_dhcp_valid:
+  - UseDNS
+  - Anonymize
+  - UseDomains
