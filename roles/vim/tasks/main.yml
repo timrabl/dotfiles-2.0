@@ -6,7 +6,7 @@
   file:
     path: "{{ ansible_env.HOME }}/{{ item.path }}"
     state: directory
-    owner: "{{ item.owner | default(ansible_ssh_user) }}"
+    owner: "{{ item.owner | default(ansible_env.USER) }}"
     group: "{{ item.group | default(group) }}"
     mode: "{{ item.mode | default(0750) }}"
   loop: "{{ vim.folders }}"
@@ -17,7 +17,7 @@
   get_url:
     url: "{{ item.url }}"
     dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
-    owner: "{{ item.owner | default(ansible_ssh_user) }}"
+    owner: "{{ item.owner | default(ansible_env.USER) }}"
     group: "{{ item.group | default(group) }}"
     mode: "{{ item.mode | default(0640) }}"
   loop: "{{ vim.autoload }}"

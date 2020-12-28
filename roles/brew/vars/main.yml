@@ -6,4 +6,4 @@ install_location: "/usr/local/bin/brew"
 list_formulae: "brew list --formulae | sed 's/\t/\r/g'"
 list_casks: "brew list --casks | sed 's/\t/\r/g'"
 
-casks_app_dir: "~/Applications"
+casks_app_dir: "{{ ansible_env.HOME }}/Applications"
