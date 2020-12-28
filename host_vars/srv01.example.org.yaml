@@ -1,0 +1,57 @@
+---
+brew:
+  casks:
+    - { name: "example-present" }
+  formulae:
+    - { name: "example-present" }
+
+dotfiles:
+  url: "https://github.com/timrabl/dotfiles-2.0.git"
+  branch: "main"
+  options:
+    os_specific: True
+    version_specific: True
+
+grub:
+  cmdline_linux:
+    - "example.enabled=0"
+
+networkd:
+  eth0:
+    link:
+      match:
+        ...
+      link:
+        ...
+    netdev:
+      match:
+        ...
+      netdev:
+        ...
+    network:
+      match:
+        ...
+      link:
+        ...
+      network:
+        ...
+      address:
+        ...
+      route:
+        ...
+      dhcp:
+        ...
+
+vim:
+  folders:
+    - { path: ".vim" }
+    - { path: ".vim/autoload" }
+    - { path: ".vim/plugged" }
+  autoload:
+    - { url: "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim", dest: ".vim/autoload/plug.vim" }
+
+vscode:
+  settings:
+    source: "{{ ansible_env.HOME }}/vscode.settings"
+  extensions:
+    - { name: "example-plugin-present" }
