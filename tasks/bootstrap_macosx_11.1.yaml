@@ -1,0 +1,16 @@
+---
+- name: Import homebrew role
+  import_role:
+    name: brew
+
+- name: Import dotfiles role
+  import_role:
+    name: dotfiles
+
+- name: Import vim role
+  import_role:
+    name: vim
+
+- name: Import vscode role
+  import_role:
+    name: vscode
