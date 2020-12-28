@@ -1,0 +1,12 @@
+[local]
+localhost ansible_connection=local
+
+[remote]
+srv01.example.org
+srv02.example.org
+srv03.example.org
+srv04.example.org
+srv05.example.org
+srv06.example.org
+srv07.example.org
+srv08.example.org
