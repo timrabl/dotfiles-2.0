@@ -1,3 +1,5 @@
+# {{ managed }}
+
 {% if item.value.network.match is defined %}
 [Match]
 {% for option, value in item.value.network.match.items() %}
@@ -5,8 +7,8 @@
 {{ option }}={{value }}
 {% endif %}
 {% endfor %}
-{% endif %}
 
+{% endif %}
 {% if item.value.network.link is defined %}
 [Link]
 {% for option, value in item.value.network.link.items() %}
@@ -14,8 +16,8 @@
 {{ option }}={{value }}
 {% endif %}
 {% endfor %}
-{% endif %}
 
+{% endif %}
 {% if item.value.network.network is defined %}
 [Network]
 {% for option, value in item.value.network.network.items() %}
@@ -23,8 +25,8 @@
 {{ option }}={{ value }}
 {% endif %}
 {% endfor %}
-{% endif %}
 
+{% endif %}
 {% if item.value.network.address is defined %}
 [Address]
 {% for option, value in item.value.network.address.items() %}
@@ -32,8 +34,8 @@
 {{ option }}={{ value }}
 {% endif %}
 {% endfor %}
-{% endif %}
 
+{% endif %}
 {% if item.value.network.route is defined %}
 [Route]
 {% for option, value in item.value.network.route.items() %}
@@ -41,8 +43,8 @@
 {{ option }}={{ value }}
 {% endif %}
 {% endfor %}
-{% endif %}
 
+{% endif %}
 {% if item.value.network.dhcp is defined %}
 [DHCP]
 {% for option, value in item.value.network.dhcp.items() %}
@@ -50,4 +52,5 @@
 {{ option }}={{ value }}
 {% endif %}
 {% endfor %}
+
 {% endif %}
