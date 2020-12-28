@@ -1,0 +1,20 @@
+galaxy_info:
+  author: Tim Oliver Rabl
+  description: systemd-networkd ansible role
+
+  license: MIT
+
+  min_ansible_version: 2.10
+
+  # If this a Container Enabled role, provide the minimum Ansible Container version.
+  # min_ansible_container_version:
+
+  platforms:
+    - name: Ubuntu 
+      versions:
+        - all
+
+  galaxy_tags:
+    - systemd-networkd
+
+dependencies: []

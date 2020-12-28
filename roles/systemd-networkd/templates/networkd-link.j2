@@ -1,0 +1,17 @@
+{% if item.value.link.match is defined %}
+[Match]
+{% for option, value in item.value.link.match.items() %}
+{% if option in link_match_valid %}
+{{ option }}={{ value }}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% if item.value.link.link is defined %}
+[Link]
+{% for option, value in item.value.link.link.items() %}
+{% if option in link_link_valid %}
+{{ option }}={{ value }}
+{% endif %}
+{% endfor %}
+{% endif %}
