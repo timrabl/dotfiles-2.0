@@ -1,11 +1,11 @@
-export DOTFILES="~/Git/repositories/private/dotfiles/src/MacOS"
+export DOTFILES="~/Git/repositories/private/dotfiles/ubuntu/20.04"
 export EDITOR='vim'
 export GOPATH=$HOME/Git/go
 export LANG=en_US.UTF-8
 export MANPATH="/usr/local/man:$MANPATH"
 export NVM_DIR="$HOME/.nvm"
 export UPDATE_ZSH_DAYS=2
-export ZSH="/Users/rabl/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 HIST_STAMPS="mm/dd/yyyy"
 ZSH_THEME="random"
@@ -13,7 +13,6 @@ ZSH_THEME_RANDOM_CANDIDATES=( "af-magic" "cloud" )
 
 plugins=(
 	ansible
-	cask
 	colored-man-pages
 	docker
 	docker-compose
@@ -27,19 +26,14 @@ source $ZSH/oh-my-zsh.sh
 
 # Enable GPG Agent for ssh
 export GPG_TTY=$(tty)
-export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
- gpgconf --launch gpg-agent
-
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
 
 # This loads nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
   # This loads nvm bash_completion
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-
-# Overwrites
-alias grep='ggrep' # requires -->  brew insall grep
 
 # Listing
 alias l.='ls -A | egrep "^\."'
@@ -54,7 +48,7 @@ alias gaa='git add .'
 alias gbd='git branch -d $@'
 alias gc='git commit'
 alias gch='git checkout'
-alias gchb='git checkout -b $@'
+alias gchb="git fetch && git checkout -b $@ origin/master"
 alias gcl="git clone $1"
 alias gcm='git commit -m "$@"'
 alias gcp='git commit -p'
@@ -74,16 +68,6 @@ alias bew='brew'
 alias bre='brew'
 alias cd..='cd ..'
 alias pdw='pdw'
-
-# Brew fomulae and casks
-alias bci="brew cask install $@"
-alias bcr="brew cask uninstall $@"
-alias bi="brew install $@"
-alias bl="brew list"
-alias br="brew uninstall $@"
-alias bs="brew search $1"
-alias bu="brew update"
-alias buu="brew upgrade $@"
 
 # readbale df output
 alias df='df -H'

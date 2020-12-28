@@ -54,7 +54,7 @@ Plug '/home/mpaulson/personal/vim-be-good'
 
 call plug#end()
 
-let g:gruvbox_contrast_dark = 'soft'
+let g:gruvbox_contrast_dark = 'hard'
 
 let g:vim_be_good_floating = 1
 
@@ -76,7 +76,7 @@ let g:gruvbox_termcolors=16
 
 let g:go_auto_sameids = 1
 
-colorscheme gruvbox-material
+colorscheme gruvbox
 set background=dark
 
 if executable('rg')
@@ -94,25 +94,37 @@ let g:netrw_winsize = 25
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
-
-nnoremap <Leader><CR> :so ~/.vimrc
+noremap <leader>l :wincmd l<CR>
 nnoremap <leader>u :UndotreeShow<CR>
-
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+nnoremap <Leader>ps :Rg<SPACE>
+nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
-
+nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
+nnoremap <Leader>ee oif err != nil {<CR>log.Fatalf("%+v\n", err)<CR>}<CR><esc>kkI<esc>
 
-nnoremap <Leader>mm odef main():<CR>pass<CR><CR>if __name == '__main__':<CR>main()<esc>kkI<esc>
-nnoremap <Leader>jj :%! jq --tab .<CR>
-
-nnoremap <leader>vwm :colorscheme gruvbox-material<bar>:set background=dark<CR>
-nmap <leader>vtm :highlight Pmenu ctermbg=0 guibg=lightgray
+nnoremap <leader>vwm :colorscheme gruvbox<bar>:set background=dark<CR>
+nmap <leader>vtm :highlight Pmenu ctermbg=gray guibg=gray
 
 vnoremap X "_d
-" Code definition
+inoremap <C-c> <esc>
+
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ coc#refresh()
+
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <C-space> coc#refresh()
+
+" GoTo code navigation.
 nmap <leader>gd <Plug>(coc-definition)
 nmap <leader>gy <Plug>(coc-type-definition)
 nmap <leader>gi <Plug>(coc-implementation)
@@ -123,13 +135,12 @@ nmap <leader>g] <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
 nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
 nnoremap <leader>cr :CocRestart
+"
+"" Sweet Sweet FuGITive
+"nmap <leader>gh :diffget //3<CR>
+"nmap <leader>gu :diffget //2<CR>
+"nmap <leader>gs :G<CR>
 
-" Git diff
-nmap <leader>gh :diffget //3<CR>
-nmap <leader>gu :diffget //2<CR>
-nmap <leader>gs :G<CR>
-
-" The best part !
 fun! TrimWhitespace()
     let l:save = winsaveview()
     keeppatterns %s/\s\+$//e
@@ -137,3 +148,19 @@ fun! TrimWhitespace()
 endfun
 
 autocmd BufWritePre * :call TrimWhitespace()
+
+function! StatusDiagnostic() abort
+    let info = get(b:, 'coc_diagnostic_info', {})
+    if empty(info) | return '' | endif
+    let msgs = []
+    if get(info, 'error', 0)
+        call add(msgs, 'E' . info['error'])
+    endif
+    if get(info, 'warning', 0)
+        call add(msgs, 'W' . info['warning'])
+    endif
+    return join(msgs, ' ') . ' ' . get(g:, 'coc_status', '')
+endfunction
+
+set statusline^=%{coc#status()}
+"%{StatusDiagnostic()}
