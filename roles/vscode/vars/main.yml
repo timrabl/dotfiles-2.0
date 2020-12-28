@@ -1,3 +1,3 @@
 ---
 # vars file for vscode
-destination: "{{ lookup('env', 'HOME') }}{% if ansible_distribution | lower == 'macosx' %}/Library/Application Support/Code/User/settings.json{% else %}/.config/Code/User/settings.json{% endif %}"
+destination: "{{ ansible_env.HOME }}{% if ansible_distribution | lower == 'macosx' %}/Library/Application Support/Code/User/settings.json{% else %}/.config/Code/User/settings.json{% endif %}"

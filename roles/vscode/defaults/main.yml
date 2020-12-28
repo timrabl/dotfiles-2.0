@@ -1,6 +1,6 @@
 ---
 # defaults file for vscode
 vscode:
-  extensions:
+  extensions: []
   settings:
-    source: "{{ lookup('env', 'HOME') }}/vscode.settings"
+    source: "{{ ansible_env.HOME }}/vscode.settings"

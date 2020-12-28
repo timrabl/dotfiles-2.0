@@ -4,7 +4,7 @@
   tags:
     - vim
   file:
-    path: "{{ lookup('env', 'HOME') }}/{{ item.path }}"
+    path: "{{ ansible_env.HOME }}/{{ item.path }}"
     state: directory
     owner: "{{ item.owner | default(ansible_ssh_user) }}"
     group: "{{ item.group | default(group) }}"
@@ -16,7 +16,7 @@
     - vim
   get_url:
     url: "{{ item.url }}"
-    dest: "{{ lookup('env', 'HOME' ) }}/{{ item.dest }}"
+    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
     owner: "{{ item.owner | default(ansible_ssh_user) }}"
     group: "{{ item.group | default(group) }}"
     mode: "{{ item.mode | default(0640) }}"

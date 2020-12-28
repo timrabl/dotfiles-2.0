@@ -24,4 +24,4 @@
   synchronize:
     src: >-
       {{ destination }}/{% if dotfiles.options.os_specific %}{{ ansible_distribution | lower }}/{% endif %}{% if dotfiles.options.version_specific %}{{ ansible_distribution_version | lower }}/{% endif %}
-    dest: "{{ lookup('env', 'HOME') }}/"
+    dest: "{{ ansible_env.HOME }}/"

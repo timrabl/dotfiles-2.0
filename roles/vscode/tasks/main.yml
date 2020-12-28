@@ -13,7 +13,7 @@
   when:
     - item.name not in extensions.stdout_lines
   command: |
-    code {% if item.state == "absent" %}--remove-extensions
+    code {% if item.state is defined and item.state == "absent" %}--remove-extensions
     {% else %}--install-extension
     {% endif %} {{ item.name }}
   loop: "{{ vscode.extensions }}"
