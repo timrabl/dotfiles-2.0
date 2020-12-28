@@ -9,7 +9,7 @@
         dir: ../host_vars/
         files_matching: "{{ ansible_hostname }}.yaml"
 
-    - name: Import dotfiles bootstrapping
+    - name: Import dotfiles role
       import_role:
         name: dotfiles
 
