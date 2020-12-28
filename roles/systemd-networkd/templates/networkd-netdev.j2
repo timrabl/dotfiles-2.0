@@ -1,3 +1,5 @@
+# {{ managed }}
+
 {% if item.value.netdev.match is defined %}
 [Match]
 {% for option, value in item.value.netdev.match.items() %}

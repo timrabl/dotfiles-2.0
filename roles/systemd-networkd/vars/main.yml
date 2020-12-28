@@ -1,5 +1,7 @@
 ---
 # vars file for systemd-networkd
+managed: "This file is managed by ansible, do not edit manually !"
+
 owner: "root"
 group: "systemd-network"
 mode: 0640
