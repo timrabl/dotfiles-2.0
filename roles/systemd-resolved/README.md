@@ -25,6 +25,19 @@ systemd-resolved:
   confd: ...
 ```
 
+### systemd-resolved.managed
+
+**Type:** str  
+**Default:** `This file is managed by ansible, do not edit manually !`  
+**Description:** String rendered in the first line as comment.  
+**Example:**  
+
+```yaml
+systemd-resolved:
+  managed: "Example header !"
+  ...
+```
+
 ### systemd-resolved.configs
 
 **Type:** dict  
