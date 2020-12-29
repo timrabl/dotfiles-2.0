@@ -1,4 +1,12 @@
 ---
+apt: 
+  signing_keys:
+    - { name: "example-url", state: "present" }
+  repositories:
+    - { name: "example-repo", state: "present" }
+  packages:
+    - { name: "example-package", state: "present" }
+
 brew:
   casks:
     - { name: "example-present" }
