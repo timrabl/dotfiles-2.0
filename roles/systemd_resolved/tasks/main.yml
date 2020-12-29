@@ -11,12 +11,6 @@
     group: "{{ resolved.confd.group | default(dir.group) }}"
     mode: "{{ resolved.confd.mode | default(dir.mode) }}"
 
-- name: Debug
-  tags:
-    - debug
-  debug:
-    msg: "{{ ansible_hostname }}"
-
 - name: Render systemd resolved configuration files
   tags:
     - systemd_resolved
