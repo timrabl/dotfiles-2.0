@@ -1,0 +1,30 @@
+---
+# vars file for systemd-resolved
+managed: "This file is managed by ansible, do not edit manually !"
+
+confd:
+  path: /etc/systemd/resolved.conf.d/
+
+dir:
+  owner: root
+  group: systemd-network
+  mode: 0750
+
+file:
+  owner: root
+  group: systemd-network
+  mode: 0640
+
+resolve_valid:
+  - DNS
+  - FallbackDNS
+  - Domains
+  - LLMNR
+  - MulticastDNS
+  - DNSSEC
+  - DNSOverTLS
+  - Cache
+  - DNSStubListener
+  - DSNStubListenerExtra
+  - ReadEtcHosts
+  - ResolveUnicastSingleLabel

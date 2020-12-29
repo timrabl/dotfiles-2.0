@@ -42,6 +42,21 @@ networkd:
       dhcp:
         ...
 
+systemd-resolved:
+  confd:
+    path: "/example/path/to/your/resolved.conf.d/folder"
+    owner: "example-owner"
+    group: "example-group"
+    mode: "example-0123"
+  configs:
+    example:
+      owner: "example-owner"
+      group: "example-group"
+      mode: "example-0123"
+      resolve:
+        ...
+
+
 vim:
   folders:
     - { path: ".vim" }

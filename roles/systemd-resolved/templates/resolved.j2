@@ -1,0 +1,11 @@
+# {{ managed }}
+
+{% if item.value.resolve is defined %}
+[Resolve]
+{% for option, value in item.value.resolve.items() %}
+{% if option in resolve_valid %}
+{{ option }}={{ value }}
+{% endif %}
+{% endfor %}
+
+{% endif %}
