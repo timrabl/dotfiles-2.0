@@ -1,0 +1,9 @@
+---
+repos:
+- repo: https://github.com/adrienverge/yamllint.git
+  rev: v1.14.0
+  hooks:
+    - id: yamllint
+      files: \.(yaml|yml)$
+      types: [file, yaml]
+      entry: yamllint --strict -f parsable
