@@ -1,4 +1,4 @@
-systemd-networkd
+systemd_networkd
 =========
 
 A brief description of the role goes here.

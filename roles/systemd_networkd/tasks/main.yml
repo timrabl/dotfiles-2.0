@@ -1,8 +1,8 @@
 ---
-# tasks file for systemd-networkd
+# tasks file for systemd_networkd
 - name: Check for existing ifupdown interfaces file
   tags:
-    - systemd-networkd
+    - systemd_networkd
   become: true
   register: ifupdown
   stat:
@@ -10,17 +10,19 @@
 
 - name: Remove ifupdown interfaces file
   tags:
-    - systemd-networkd
+    - systemd_networkd
   become: true
   when: ifupdown.stat.exists
   file:
     path: "{{ ifupdown_path }}/interfaces"
     state: absent
 
-- name: Render systemd-networkd link files
+- name: Render systemd_networkd link files
   become: true
+  tags:
+    - systemd_networkd
   template:
-    src: ../templates/networkd-link.j2
+    src: networkd_link.j2
     dest: "{{ networkd_path }}/{{ item.key }}.link"
     owner: "{{ owner }}"
     group: "{{ group }}"
@@ -28,12 +30,14 @@
   when: item.value.link is defined
   loop: "{{ networkd.interfaces | dict2items }}"
   notify:
-    - Restart systemd-networkd
+    - Restart systemd_networkd
 
-- name: Render systemd-networkd netdev files
+- name: Render systemd_networkd netdev files
   become: true
+  tags:
+    - systemd_networkd
   template:
-    src: ../templates/networkd-netdev.j2
+    src: networkd_netdev.j2
     dest: "{{ networkd_path }}/{{ item.key }}.netdev"
     owner: "{{ owner }}"
     group: "{{ group }}"
@@ -41,12 +45,14 @@
   when: item.value.netdev is defined
   loop: "{{ networkd.interfaces | dict2items }}"
   notify:
-    - Restart systemd-networkd
+    - Restart systemd_networkd
 
-- name: Render systemd-networkd network files
+- name: Render systemd_networkd network files
   become: true
+  tags:
+    - systemd_networkd
   template:
-    src: ../templates/networkd-network.j2
+    src: networkd_network.j2
     dest: "{{ networkd_path }}/{{ item.key }}.network"
     owner: "{{ owner }}"
     group: "{{ group }}"
@@ -54,7 +60,7 @@
   when: item.value.network is defined
   loop: "{{ networkd.interfaces | dict2items }}"
   notify:
-    - Restart systemd-networkd
+    - Restart systemd_networkd
   
 - name: Flush restart handlers
   meta: flush_handlers

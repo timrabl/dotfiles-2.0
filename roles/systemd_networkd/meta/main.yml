@@ -1,6 +1,6 @@
 galaxy_info:
   author: Tim Oliver Rabl
-  description: systemd-networkd ansible role
+  description: systemd_networkd ansible role
 
   license: MIT
 
@@ -15,6 +15,6 @@ galaxy_info:
         - all
 
   galaxy_tags:
-    - systemd-networkd
+    - systemd_networkd
 
 dependencies: []
