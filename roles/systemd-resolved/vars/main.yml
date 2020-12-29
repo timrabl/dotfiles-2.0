@@ -8,12 +8,12 @@ confd:
 dir:
   owner: root
   group: systemd-network
-  mode: 0750
+  mode: "0750"
 
 file:
   owner: root
   group: systemd-network
-  mode: 0640
+  mode: "0640"
 
 resolve_valid:
   - DNS
