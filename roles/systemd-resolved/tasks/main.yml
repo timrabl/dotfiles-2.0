@@ -1,0 +1,27 @@
+---
+# tasks file for systemd-resolved
+- name: Ensure resolved.conf.d folder
+  tags:
+    - systemd-resolved
+  become: true
+  file:
+    path: "{{ systemd-resolved.confd.path | default(confd.path) }}"
+    state: present
+    owner: "{{ systemd-resolved.confd.owner | default(dir.owner) }}"
+    group: "{{ systemd-resolved.confd.group | default(dir.group) }}"
+    mode: "{{ sysytemd-resolved.confd.mode | default(dir.mode) }}"
+
+- name: Render resolved configuration files
+  tags:
+    - systemd-resolved
+  become: true
+  template:
+    src: ../templates/resolved.j2
+    dest: "{{ systemd-resolved.confd.path | default(confd.path) }}/{{ item.key }}.conf"
+    owner: "{{ item.value.owner | default(file.owner) }}"
+    group: "{{ item.value.group | default(file.group) }}"
+    mode: "{{ item.value.mode | default(file.mode) }}"
+  when: item.value.resolve is defined
+  loop: "{{ systemd-resolved.configs | dict2items }}"
+  notify:
+    - Restart systemd-resolved
