@@ -1,4 +1,4 @@
-# {{ managed }}
+# {{ resolved.managed | default(managed) }}
 
 {% if item.value.resolve is defined %}
 [Resolve]

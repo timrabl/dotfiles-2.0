@@ -7,6 +7,10 @@
   import_role:
     name: systemd-networkd
 
+- name: Import systemd-resolved role
+  import_role:
+    name: systemd-resolved
+
 - name: Import dotfiles role
   import_role:
     name: dotfiles
