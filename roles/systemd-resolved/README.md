@@ -12,7 +12,7 @@ systemd-resolved
 Role Variables
 --------------
 
-### systemd-resolved
+### resolved
 
 **Type:** dict  
 **Default:** none  
@@ -20,12 +20,12 @@ Role Variables
 **Example:**  
 
 ```yaml
-systemd-resolved:
+resolved:
   configs: ...
   confd: ...
 ```
 
-### systemd-resolved.managed
+### resolved.managed
 
 **Type:** str  
 **Default:** `This file is managed by ansible, do not edit manually !`  
@@ -33,12 +33,12 @@ systemd-resolved:
 **Example:**  
 
 ```yaml
-systemd-resolved:
+resolved:
   managed: "Example header !"
   ...
 ```
 
-### systemd-resolved.configs
+### resolved.configs
 
 **Type:** dict  
 **Default:** none  
@@ -46,13 +46,13 @@ systemd-resolved:
 **Example:**  
 
 ```yaml
-systemd-resolved:
+resolved:
   configs:
     ...
   ...
 ```
 
-### systemd-resolved.configs.< CONFIG FILENAME >
+### resolved.configs.< CONFIG FILENAME >
 
 **Type:** dict  
 **Default:** none  
@@ -60,14 +60,14 @@ systemd-resolved:
 **Example:**  
 
 ```yaml
-systemd-resolved:
+resolved:
   configs:
     < CONFIG FILENAME>:
       ...
   ...
 ```
 
-### systemd-resolved.configs.< CONFIG FILENAME >.owner
+### resolved.configs.< CONFIG FILENAME >.owner
 
 **Type:** str  
 **Default:** root  
@@ -75,7 +75,7 @@ systemd-resolved:
 **Example:**  
 
 ```yaml
-systemd-resolved:
+resolved:
   configs:
     < CONFIG FILENAME>:
       owner: "example-user"
@@ -83,7 +83,7 @@ systemd-resolved:
   ...
 ```
 
-### systemd-resolved.configs.< CONFIG FILENAME >.group
+### resolved.configs.< CONFIG FILENAME >.group
 
 **Type:** str  
 **Default:** systemd-network  
@@ -91,7 +91,7 @@ systemd-resolved:
 **Example:**  
 
 ```yaml
-systemd-resolved:
+resolved:
   configs:
     < CONFIG FILENAME>:
       ...
@@ -100,7 +100,7 @@ systemd-resolved:
   ...
 ```
 
-### systemd-resolved.configs.< CONFIG FILENAME >.mode
+### resolved.configs.< CONFIG FILENAME >.mode
 
 **Type:** str  
 **Default:** 0640  
@@ -108,7 +108,7 @@ systemd-resolved:
 **Example:**  
 
 ```yaml
-systemd-resolved:
+resolved:
   configs:
     < CONFIG FILENAME>:
       ...
@@ -118,7 +118,7 @@ systemd-resolved:
 ```
 
 
-### systemd-resolved.configs.< CONFIG FILENAME >.resolve
+### resolved.configs.< CONFIG FILENAME >.resolve
 
 **Type:** dict  
 **Default:** none  
@@ -126,7 +126,7 @@ systemd-resolved:
 **Example:**  
 
 ```yaml
-systemd-resolved:
+resolved:
   configs:
     <CONFIG FILENAME>:
       resolve:
