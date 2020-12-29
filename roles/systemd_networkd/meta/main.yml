@@ -1,6 +1,6 @@
 galaxy_info:
   author: Tim Oliver Rabl
-  description: systemd_networkd ansible role
+  description: systemd networkd ansible role
 
   license: MIT
 
@@ -10,11 +10,12 @@ galaxy_info:
   # min_ansible_container_version:
 
   platforms:
-    - name: Ubuntu 
+    - name: Ubuntu
       versions:
         - all
 
   galaxy_tags:
-    - systemd_networkd
+    - systemd
+    - networkd
 
 dependencies: []
