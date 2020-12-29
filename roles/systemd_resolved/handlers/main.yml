@@ -1,10 +1,9 @@
 ---
 # handlers file for systemd-resolved
-- name: Restart systemd-resolved
+- name: Restart systemd_resolved
   tags:
-    - systemd-resolved
+    - systemd_resolved
   become: true
   service:
     name: systemd-resolved
     state: restarted
-  

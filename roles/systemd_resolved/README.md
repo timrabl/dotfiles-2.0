@@ -1,8 +1,7 @@
-systemd-resolved
+systemd_resolved
 =========
 
-This role renders `systemd-resolved` configuration files under   
-`/etc/systemd/resolved.conf.d/` and creates the config folder if it doesn't already exists.  
+This role renders `systemd_resolved` configuration files under `/etc/systemd/resolved.conf.d/` and creates the config folder if it doesn't already exists.  
 
 Requirements
 ------------
@@ -192,8 +191,7 @@ resolved:
 
 **Type:** list  
 **Default:** [ ... ]  
-**Description:** List of allowed options in the **Resolve** Section according to the [docs](https://www.freedesktop.org/software/systemd/man/systemd-resolved.service.html).  
-
+**Description:** List of allowed options in the **Resolve** Section according to the [docs](https://www.freedesktop.org/software/systemd/man/systemd_resolved.service.html).  
 
 Example Playbook
 ----------------
@@ -203,7 +201,7 @@ Example Playbook
 - name: Example playbook
   hosts: all
   roles: 
-    - { role: systemd-resolved }
+    - { role: systemd_resolved }
 ```
 
 License

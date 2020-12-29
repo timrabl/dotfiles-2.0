@@ -1,6 +1,6 @@
 galaxy_info:
   author: Tim Oliver Rabl
-  description: systemd-resolved ansible role
+  description: systemd resolved ansible role
 
   license: MIT
 
@@ -10,11 +10,12 @@ galaxy_info:
   # min_ansible_container_version:
 
   platforms:
-    - name: Ubuntu 
+    - name: Ubuntu
       versions:
         - all
 
   galaxy_tags:
-    - systemd-resolved
+    - systemd
+    - resolved
 
 dependencies: []

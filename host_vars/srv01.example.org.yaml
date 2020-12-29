@@ -42,7 +42,7 @@ networkd:
       dhcp:
         ...
 
-systemd-resolved:
+resolved:
   managed: "Example managed header"
   confd:
     path: "/example/path/to/your/resolved.conf.d/folder"
