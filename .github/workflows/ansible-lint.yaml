@@ -17,12 +17,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Lint Ansible playboooks, tasks and roles
+    - name: Lint Ansible playbooks, tasks and roles
       uses: ansible/ansible-lint-action@v4.1.0
       with:
         targets: |
-          **/*.yaml
-          **/*.yml
+          playbooks/*
+          tasks/*
+          roles/*
         override-deps: |
           ansible==2.10.3
           ansible-lint==4.3.7
