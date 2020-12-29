@@ -5,6 +5,8 @@
   gather_facts: True
   tasks:
     - name: Include host specific vars file
+      tags:
+        - always
       include_vars:
         dir: ../host_vars/
         files_matching: "{{ ansible_hostname }}.yaml"
@@ -15,7 +17,7 @@
       when:
         - ansible_distribution | lower == "macosx"
         - ansible_distribution_version | lower == "11.1"
-      import_tasks: "../tasks/macosx11_1.yaml"
+      include_tasks: "../tasks/macosx11_1.yaml"
 
     - name: Import Ubuntu version 20.04 tasks list
       tags:
@@ -23,4 +25,4 @@
       when:
         - ansible_distribution | lower == "ubuntu"
         - ansible_distribution_version | lower == "20.04"
-      import_tasks: "../tasks/ubuntu20_04.yaml"
+      include_tasks: "../tasks/ubuntu20_04.yaml"
