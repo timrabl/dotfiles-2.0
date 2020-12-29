@@ -1,0 +1,21 @@
+name: Ansible Lint  # feel free to pick your own name
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Lint Ansible Playbook
+      uses: ansible/ansible-lint-action@main
+      with:
+        targets: |
+          **/*.yaml
+          **/*.yml
+        override-deps: |
+          ansible==2.10.3
+          ansible-lint==4.3.7
