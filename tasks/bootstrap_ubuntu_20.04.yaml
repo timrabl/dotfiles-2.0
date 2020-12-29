@@ -5,7 +5,7 @@
 
 - name: Import systemd-networkd role
   import_role:
-    name: systemd-networkd
+    name: systemd_networkd
 
 - name: Import systemd resolved role
   import_role:
