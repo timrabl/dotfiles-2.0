@@ -1,8 +1,8 @@
 ---
 # handlers file for systemd-networkd
-- name: Restart systemd-networkd
+- name: Restart systemd_networkd
   tags:
-    - systemd-networkd
+    - systemd_networkd
   become: true
   service:
     name: systemd-networkd

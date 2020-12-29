@@ -1,5 +1,5 @@
 ---
-# vars file for systemd-networkd
+# vars file for systemd_networkd
 managed: "This file is managed by ansible, do not edit manually !"
 
 owner: "root"
