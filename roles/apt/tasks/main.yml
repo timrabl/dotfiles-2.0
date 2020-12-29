@@ -36,7 +36,7 @@
   tags:
     - apt
   register: packages
-  shell: "apt list --installed 2>/dev/null | grep -v automatic | awk -F '/' '{ print $1 }' | sed '0,/^Listing...$/d'"
+  shell: "set -o pipefail && apt list --installed 2>/dev/null | grep -v automatic | awk -F '/' '{ print $1 }' | sed '0,/^Listing...$/d'"
   when: apt.packages is defined
   changed_when: false
 
