@@ -1,0 +1,58 @@
+---
+# tasks file for apt
+- name: Ensure apt signing keys
+  tags:
+    - apt
+  become: true
+  apt_key:
+    url: "{{ item.name }}"
+    state: "{{ item.state | default('present') }}"
+  when: apt.signing_keys is defined
+  loop: "{{ apt.signing_keys }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: Ensure apt repository state
+  tags:
+    - apt
+  become: true
+  apt_repository:
+    repo: "{{ item.name }}"
+    state: "{{ item.state | default('present') }}"
+  when: apt.repositories is defined
+  loop: "{{ apt.repositories }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: Update the apt cache
+  tags:
+    - apt
+  become: yes
+  apt:
+    update_cache: yes
+    cache_valid_time: "{{ apt.cache_valid_time | default(cache_valid_time) }}"
+
+- name: Get installed apt packages
+  tags:
+    - apt
+  register: packages
+  shell: "set -o pipefail && apt list --installed 2>/dev/null | grep -v automatic | awk -F '/' '{ print $1 }' | sed '0,/^Listing...$/d'"
+  when: apt.packages is defined
+  changed_when: false
+
+- name: Ensure apt package state
+  tags:
+    - apt
+  become: yes
+  apt:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default('latest') }}"
+    install_recommends: "{{ item.install_recommends | default(install_recommends) }}"
+    autoremove: "{{ item.autoremove | default(autoremove) }}"
+    autoclean: "{{ item.autoclean | default(autoclean) }}"
+  when:
+    - apt.packages is defined
+    - item.name not in packages.stdout_lines
+  loop: "{{ apt.packages }}"
+  loop_control:
+    label: "{{ item.name }}"

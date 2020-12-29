@@ -1,0 +1,6 @@
+---
+# vars file for apt
+cache_valid_time: 3600
+install_recommends: true
+autoremove: true
+autoclean: true
