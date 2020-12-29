@@ -1,5 +1,10 @@
 # dotfiles / ansible bootstrap
 
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/timrabl/dotfiles)
+![GitHub issues](https://img.shields.io/github/issues/timrabl/dotfiles)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/timrabl/dotfiles/main)
+![GitHub](https://img.shields.io/github/license/timrabl/dotfiles)
+
 As you may mantioned, this isn't a default dotfiles repository.
 All dotfiles located in this repository are ensured and installed via ansible.
 In addition to the above mentioned dotfiles, the system that needs to be boostrapped, is configured with ansible too.
