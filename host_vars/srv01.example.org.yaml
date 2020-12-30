@@ -58,6 +58,10 @@ networkd:
       dhcp:
         ...
 
+pip:
+  packages:
+    - { name: "example-pip-package", state: "present", extra_args: "--extra-args" }
+
 resolved:
   managed: "Example managed header"
   confd:

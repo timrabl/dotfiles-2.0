@@ -1,0 +1,14 @@
+---
+# tasks file for pip
+- name: Ensure pip package states
+  tags:
+    - pip
+  become: true
+  pip:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default(state) }}"
+    extra_args: "{{ item.extra_args | default(extra_args) }}"
+  when: pip.packages is defined
+  loop: "{{ pip.packages }}"
+  loop_control:
+    label: "{{ item.name }}"

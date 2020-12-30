@@ -15,6 +15,10 @@
   import_role:
     name: apt
 
+- name: Import pip role
+  import_role:
+    name: pip
+
 - name: Import docker-compose role
   import_role:
     name: docker_compose
