@@ -17,10 +17,6 @@
     path: "{{ nvm.dest | default(dest) }}"
   register: script
   changed_when: false
-
-- name: Notify installer
-  debug:
-    msg: ""
   notify:
     - Install nvm
     - Install node

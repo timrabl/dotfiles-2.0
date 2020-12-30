@@ -5,6 +5,6 @@
     - ohmyzsh
   git:
     repo: "{{ oh_my_zsh.url | default(url) }}"
-    branch: "{{ oh_my_zsh.branch | default(branch) }}"
+    version: "{{ oh_my_zsh.branch | default(branch) }}"
     dest: "{{ oh_my_zsh.dest | default(dest) }}"
     force: "{{ oh_my_zsh.force | default(force) }}"

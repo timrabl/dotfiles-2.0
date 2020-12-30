@@ -9,7 +9,7 @@
 
 - name: Import oh-my-zsh role
   import_role:
-    name: oh_my_zsh
+    name: ohmyzsh
 
 - name: Import dotfiles role
   import_role:
