@@ -1,0 +1,9 @@
+---
+# tasks file for oh_my_zsh
+- name: Clone oh-my-zsh repository
+  tags:
+    - oh_my_zsh
+  git:
+    repo: "{{ oh_my_zsh.url | default(url) }}"
+    dest: "{{ oh_my_zsh.dest | default(dest) }}"
+    force: "{{ oh_my_zsh.force | default(force) }}"
