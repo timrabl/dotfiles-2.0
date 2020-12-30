@@ -1,0 +1,12 @@
+---
+# handlers file for nvm
+- name: Install nvm
+  tags:
+    - nvm
+  shell: "{{ nvm.dest | default(dest) }}"
+  when: script.stat.exists
+
+- name: Install node
+  tags:
+    - nvm
+  shell: "source {{ ansible_env.HOME }}/.nvm/nvm.sh && nvm install node"

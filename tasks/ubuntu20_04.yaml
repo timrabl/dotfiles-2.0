@@ -23,6 +23,10 @@
   import_role:
     name: docker_compose
 
+- name: Import nvm role
+  import_role:
+    name: nvm
+
 - name: Import Snapcraft role
   import_role:
     name: snapcraft

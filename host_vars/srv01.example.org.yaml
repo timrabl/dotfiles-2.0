@@ -58,6 +58,14 @@ networkd:
       dhcp:
         ...
 
+nvm:
+  url: "https://example.org/remote/to/get/the/installer/script.sh"
+  version: "v.1.2.3.4"
+  dest: "/tmp/destination/path"
+  owner: "example-owner"
+  group: "example-group"
+  mode: "example-mode"
+
 pip:
   packages:
     - { name: "example-pip-package", state: "present", extra_args: "--extra-args" }
