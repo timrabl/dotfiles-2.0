@@ -1,0 +1,4 @@
+---
+# vars file for pip
+state: "present"
+extra_args: ""
