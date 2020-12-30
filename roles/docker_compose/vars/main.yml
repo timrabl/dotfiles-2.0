@@ -1,0 +1,8 @@
+---
+# vars file for docker_compose
+ url: https://github.com/docker/compose/releases/download/
+ version: "1.27.4"
+ dest: "/usr/local/bin/docker-compose"
+ owner: "root"
+ group: "root"
+ mode: "0750"

@@ -15,6 +15,10 @@
   import_role:
     name: apt
 
+- name: Import docker-compose role
+  import_role:
+    name: docker_compose
+
 - name: Import Snapcraft role
   import_role:
     name: snapcraft

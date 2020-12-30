@@ -1,5 +1,5 @@
 ---
-apt: 
+apt:
   signing_keys:
     - { name: "example-url", state: "present" }
   repositories:
@@ -12,6 +12,14 @@ brew:
     - { name: "example-present" }
   formulae:
     - { name: "example-present" }
+
+docker_compose:
+  url: "http://example.org/download/docker/compose/binary"
+  version: "v.x.z.y"
+  dest: "/example/destination/path"
+  owner: "example-owner"
+  group: "example-group"
+  mode: "example-mode"
 
 dotfiles:
   url: "https://github.com/timrabl/dotfiles-2.0.git"

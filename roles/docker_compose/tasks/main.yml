@@ -1,0 +1,29 @@
+---
+# tasks file for docker_compose
+- name: Register kernel name
+  tags:
+    - docker_compose
+  command: uname -s
+  register: kernel_name
+  changed_when: false
+
+- name: Register machine hardware name
+  tags:
+    - docker_compose
+  command: uname -m
+  register: machine_name
+  changed_when: false
+
+- name: Install docker-compose
+  tags:
+    - docker_compose
+  become: yes
+  get_url:
+    url: >-
+      {{ docker_compose.url | default(url) }}
+      {{ docker_compose.version | default(version) }}
+      /docker-compose-{{ kernel_name.stdout }}-{{ machine_hw_name.stdout }}
+    dest: "{{ docker_compose.dest }}"
+    owner: "{{ docker-compose.owner | default(owner) }}"
+    group: "{{ docker_compose.group | default(group) }}"
+    mode: "{{ docker_compose.mode | default(mode) }}"
