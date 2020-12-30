@@ -112,7 +112,7 @@ Example Playbook
 - name: Example playbook
   hosts: all
   roles: 
-    - { role: systemd_resolved }
+    - { role: ohmyzsh }
 ```
 
 License
