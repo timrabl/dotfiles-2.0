@@ -19,6 +19,10 @@
   import_role:
     name: docker_compose
 
+- name: Import Snapcraft role
+  import_role:
+    name: snapcraft
+
 - name: Import oh-my-zsh role
   import_role:
     name: oh_my_zsh

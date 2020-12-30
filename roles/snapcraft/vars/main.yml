@@ -1,0 +1,4 @@
+---
+# vars file for snapcraft
+channel: "stable"
+classic: false

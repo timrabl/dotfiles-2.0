@@ -1,0 +1,14 @@
+---
+# tasks file for snapcraft
+- name: Ensure snap states
+  tags:
+    - snapcraft
+  become: true
+  snap:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+    channel: "{{ item.channel | default(channel) }}"
+    classic: "{{ item.classic | default(classic) }}"
+  loop: "{{ snapcraft.snaps }}"
+  loop_control:
+    label: "{{ item.name }}"

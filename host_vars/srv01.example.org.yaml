@@ -1,5 +1,5 @@
 ---
-apt: 
+apt:
   signing_keys:
     - { name: "example-url", state: "present" }
   repositories:
@@ -72,6 +72,10 @@ resolved:
       mode: "example-0123"
       resolve:
         ...
+
+snapcraft:
+  snaps:
+    - { name: "example", state: "present", channel: "stable", classic: false }
 
 vim:
   folders:
