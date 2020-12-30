@@ -1,0 +1,9 @@
+---
+# vars file for nvm
+url: "https://raw.githubusercontent.com/nvm-sh/nvm/"
+version: "v0.37.2"
+
+dest: "/tmp/nvm_install.sh"
+owner: "{{ ansible_env.USER }}"
+group: "{{ ansible_env.USER }}"
+mode: "0750"

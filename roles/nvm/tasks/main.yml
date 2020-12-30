@@ -1,0 +1,31 @@
+---
+# tasks file for nvm
+- name: Get nvm installer script
+  tags:
+    - nvm
+  get_url:
+    url: "{{ nvm.url | default(url) }}{{ nvm.version | default(version) }}/install.sh"
+    dest: "{{ nvm.dest | default(dest) }}"
+    owner: "{{ nvm.owner | default(owner) }}"
+    group: "{{ nvm.group | default(group) }}"
+    mode: "{{ nvm.mode | default(mode) }}"
+
+- name: Register nvm install script
+  tags:
+    - nvm
+  stat:
+    path: "{{ nvm.dest | default(dest) }}"
+  register: script
+  changed_when: false
+
+- name: Notify installer
+  debug:
+    msg: ""
+  notify:
+    - Install nvm
+    - Install node
+
+- name: Removing nvm install script
+  file:
+    path: "{{ nvm.dest | default(dest) }}"
+    state: absent
