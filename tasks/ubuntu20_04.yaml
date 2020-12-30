@@ -15,6 +15,10 @@
   import_role:
     name: apt
 
+- name: Import Snapcraft role
+  import_role:
+    name: snapcraft
+
 - name: Import oh-my-zsh role
   import_role:
     name: oh_my_zsh
