@@ -23,7 +23,7 @@
       {{ docker_compose.url | default(url) }}
       {{ docker_compose.version | default(version) }}
       /docker-compose-{{ kernel_name.stdout }}-{{ machine_hw_name.stdout }}
-    dest: "{{ docker_compose.dest }}" 
+    dest: "{{ docker_compose.dest }}"
     owner: "{{ docker-compose.owner | default(owner) }}"
     group: "{{ docker_compose.group | default(group) }}"
     mode: "{{ docker_compose.mode | default(mode) }}"
