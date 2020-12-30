@@ -3,6 +3,10 @@
   import_role:
     name: brew
 
+- name: Import oh-my-zsh role
+  import_role:
+    name: oh_my_zsh
+
 - name: Import dotfiles role
   import_role:
     name: dotfiles
