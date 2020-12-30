@@ -14,13 +14,14 @@ Role Variables
 ### oh_my_zsh
 
 **Type:** dict  
-**Default:** { url: ..., dest: ..., force: ...}  
+**Default:** none
 **Description:** Dict containing dicts and sub lists.  
 **Example:**  
 
 ```yaml
 oh_my_zsh:
-  urL: ...
+  url: ...
+  branch: ...
   dest: ...
   force: ...
 ```
@@ -28,13 +29,26 @@ oh_my_zsh:
 ### oh_my_zsh.url
 
 **Type:** str  
-**Default:** `https://github.com/robbyrussell/oh-my-zsh`  
+**Default:** `https://github.com/ohmyzsh/ohmyzsh`  
 **Description:** URL of the oh-my-zsh repository.  
 **Example:**  
 
 ```yaml
 oh_my_zsh:
-  urL: "https://github.com/robbyrussell/oh-my-zsh"
+  url: "https://github.com/ohmyzsh/ohmyzsh"
+  ...
+```
+
+### oh_my_zsh.branch
+
+**Type:** str  
+**Default:** `master`  
+**Description:** Branch used for git checkout.
+**Example:**  
+
+```yaml
+oh_my_zsh:
+  branch: "master"
   ...
 ```
 
@@ -48,7 +62,7 @@ oh_my_zsh:
 ```yaml
 oh_my_zsh:
   ...
-  urL: "{{ ansible_env.HOME }}/.oh-my-zsh"
+  dest: "{{ ansible_env.HOME }}/.oh-my-zsh"
   ...
 ```
 
@@ -82,6 +96,13 @@ oh_my_zsh:
 **Type:** bool  
 **Default:** `true`  
 **Description:** Force switch, this overwrites local modified files.  
+
+### branch
+
+**Type:** str  
+**Default:** `master`  
+**Description:** Branch used for git checkout.  
+
 
 Example Playbook
 ----------------

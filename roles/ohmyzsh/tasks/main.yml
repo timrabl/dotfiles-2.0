@@ -2,8 +2,9 @@
 # tasks file for oh_my_zsh
 - name: Clone oh-my-zsh repository
   tags:
-    - oh_my_zsh
+    - ohmyzsh
   git:
     repo: "{{ oh_my_zsh.url | default(url) }}"
+    branch: "{{ oh_my_zsh.branch | default(branch) }}"
     dest: "{{ oh_my_zsh.dest | default(dest) }}"
     force: "{{ oh_my_zsh.force | default(force) }}"

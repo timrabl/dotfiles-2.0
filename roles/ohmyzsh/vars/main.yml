@@ -1,5 +1,6 @@
 ---
 # vars file for oh_my_zsh
-url: https://github.com/robbyrussell/oh-my-zsh
+url: https://github.com/ohmyzsh/ohmyzsh.git
+branch: "master"
 dest: "{{ ansible_env.HOME }}/.oh-my-zsh"
 force: true
