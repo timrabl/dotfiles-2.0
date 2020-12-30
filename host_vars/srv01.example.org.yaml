@@ -65,6 +65,9 @@ resolved:
       resolve:
         ...
 
+snapcraft:
+  snaps:
+    - { name: "example", state: "present", channel: "stable", classic: false }
 
 vim:
   folders:
