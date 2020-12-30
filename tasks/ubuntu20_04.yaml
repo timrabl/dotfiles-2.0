@@ -14,7 +14,7 @@
 - name: Import apt role
   import_role:
     name: apt
-  
+
 - name: Import pip role
   import_role:
     name: pip
