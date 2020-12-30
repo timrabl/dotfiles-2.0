@@ -1,5 +1,11 @@
 ---
 # tasks file for pip
+- name: Get install pip pacakges
+  tags:
+    - pip
+  command: "pip freeze"
+  register: packages
+
 - name: Ensure pip package states
   tags:
     - pip
@@ -8,7 +14,9 @@
     name: "{{ item.name }}"
     state: "{{ item.state | default(state) }}"
     extra_args: "{{ item.extra_args | default(extra_args) }}"
-  when: pip.packages is defined
+  when:
+    - pip.packages is defined
+    - item.name not in packages.stdout_lines
   loop: "{{ pip.packages }}"
   loop_control:
     label: "{{ item.name }}"
