@@ -102,3 +102,17 @@ vscode:
     source: "{{ ansible_env.HOME }}/vscode.settings"
   extensions:
     - { name: "example-plugin-present" }
+
+wireguard:
+  managed: "Example file header !"
+  privilege_escalation: true
+  configs:
+    ansible-wg0:
+      owner: "example-owner"
+      group: "example-group"
+      mode: "example-mode"
+      interface:
+        ...
+      peers:
+        example-peer-1:
+          ...
