@@ -1,0 +1,39 @@
+---
+# vars file for wireguard
+managed: "This file is managed by ansible, do not edit manually !"
+
+privilege_escalation: true
+
+config_path: /etc/wireguard
+
+config_path_owner: "root"
+config_path_group: "root"
+config_path_mode: "0700"
+
+config_owner: "root"
+config_group: "root"
+config_mode: "0640"
+
+interface_valid:
+  # WG valid from https://jlk.fjfi.cvut.cz/arch/manpages/man/wg.8#CONFIGURATION_FILE_FORMAT
+  - PrivateKey
+  - ListenPort
+  - FwMark
+  # WG-QUICK valid from https://jlk.fjfi.cvut.cz/arch/manpages/man/wg-quick.8.en
+  - Address
+  - DNS
+  - MTU
+  - Table
+  - PreUp
+  - PostUp
+  - PreDown
+  - PostDown
+  - SaveConfig
+
+peer_valid:
+  # WG valid from https://jlk.fjfi.cvut.cz/arch/manpages/man/wg.8#CONFIGURATION_FILE_FORMAT
+  - PublicKey
+  - PresharedKey
+  - AllowedIPs
+  - Endpoint
+  - PersistentKeepalive

@@ -1,0 +1,23 @@
+### {{ wireguard.managed | default(managed) }}
+
+{% if item.value.interface is defined %}
+[Interface]
+{% for option, value in item.value.interface.items() %}
+{% if option in interface_valid %}
+{{ option }} = {{ value }}
+{% endif %}
+{% endfor %}
+
+{% endif %}
+{% if item.value.peers is defined %}
+{% for peer_name, peer_data in item.value.peers.items() %}
+### ANSIBLE PEER MARKER: {{ peer_name }}
+[Peer]
+{% for option, value in peer_data.items() %}
+{% if option in peer_valid %}
+{{ option }} = {{ value }}
+{% endif %}
+{% endfor %}
+
+{% endfor %}
+{% endif %}
