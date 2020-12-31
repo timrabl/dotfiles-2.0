@@ -1,0 +1,27 @@
+---
+# tasks file for wireguard
+- name: Ensure wireguard configuration path
+  tags:
+    - wireguard
+  become: "{{ wireguard.privilege_escalation | default(privilege_escalation) }}"
+  file:
+    name: "{{ wireguard.config_path | default(config_path) }}"
+    state: directory
+    owner: "{{ wireguard.config_path_owner | default(config_path_owner) }}"
+    group: "{{ wireguard.config_path_group | default(config_path_group) }}"
+    mode: "{{ wireguard.config_path_mode | default(config_path_mode) }}"
+
+- name: Render Wireguard configuration files
+  tags:
+    - wireguard
+  become: "{{ wireguard.privilege_escalation | default(privilege_escalation) }}"
+  template:
+    src: wireguard.j2
+    dest: "{{ wireguard.config_path | default(config_path) }}/{{ item.key }}.conf"
+    owner: "{{ item.value.owner | default(config_owner) }}"
+    group: "{{ item.value.group | default(config_group) }}"
+    mode: "{{ item.value.mode | default(config_mode) }}"
+  when: wireguard.configs is defined
+  loop: "{{ wireguard.configs | dict2items }}"
+  loop_control:
+    label: "{{ item.key }}"

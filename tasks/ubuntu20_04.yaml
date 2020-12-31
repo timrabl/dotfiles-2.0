@@ -46,3 +46,7 @@
 - name: Import vscode role
   import_role:
     name: vscode
+
+- name: Import wireguard role
+  import_role:
+    name: wireguard
