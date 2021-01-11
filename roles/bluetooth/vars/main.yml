@@ -1,0 +1,5 @@
+---
+# vars file for bluetooth
+path: /etc/bluetooth/main.conf
+
+controller_mode: dual

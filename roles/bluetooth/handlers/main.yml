@@ -1,0 +1,10 @@
+---
+# handlers file for bluetooth
+
+- name: Restart bluetooth
+  tags:
+  - bluetooth
+  become: true
+  service:
+    name: bluetooth
+    state: restarted
