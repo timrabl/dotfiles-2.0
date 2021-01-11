@@ -1,15 +1,25 @@
-export DOTFILES="~/Git/repositories/private/dotfiles/ubuntu/20.04"
-export EDITOR='vim'
-export GOPATH=$HOME/Git/go
-export LANG=en_US.UTF-8
+# Genral exports
+export EDITOR="vim"
+export GPG_TTY=$(tty)
+export LANG="en_US.UTF-8"
+export UPDATE_ZSH_DAYS=2
+
+# Path exports
+export DOTFILES="$HOME/Git/repositories/private/dotfiles/ubuntu/"
+export GOPATH="$HOME/Git/go"
 export MANPATH="/usr/local/man:$MANPATH"
 export NVM_DIR="$HOME/.nvm"
-export UPDATE_ZSH_DAYS=2
+export PATH="$PATH:$GOPATH/bin"
+export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
 export ZSH="$HOME/.oh-my-zsh"
 
+# ZSH internal vars
 HIST_STAMPS="mm/dd/yyyy"
 ZSH_THEME="random"
-ZSH_THEME_RANDOM_CANDIDATES=( "af-magic" "cloud" )
+ZSH_THEME_RANDOM_CANDIDATES=(
+    "af-magic"
+    "cloud"
+)
 
 plugins=(
 	ansible
@@ -22,50 +32,48 @@ plugins=(
 	gpg-agent
 )
 
+# Load OMZ
 source $ZSH/oh-my-zsh.sh
 
-# Enable GPG Agent for ssh
-export GPG_TTY=$(tty)
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+# Lunch the GPG agent
 gpgconf --launch gpg-agent
 
-# This loads nvm
+# Load NVM and NVM completion
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-  # This loads nvm bash_completion
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
+# Overwriting
+alias grep="ggrep" # requires -->  brew insall grep
+
 # Listing
-alias l.='ls -A | egrep "^\."'
-alias l='ls -l'
-alias la='ls -a'
-alias ll='ls -laht' # The best one
+alias l.="ls -A | egrep "^\.""
+alias l="ls -l"
+alias la="ls -a"
+alias ll="ls -laht" # The best one
 
 # Git
-alias g='git'
+alias g="git"
 alias ga="git add $@"
-alias gaa='git add .'
-alias gbd='git branch -d $@'
-alias gc='git commit'
-alias gch='git checkout'
-alias gchb="git fetch && git checkout -b $@ origin/master"
+alias gaa="git add ."
+alias gbd="git branch -d $@"
+alias gc="git commit"
+alias gch="git checkout"
+alias gchb="git checkout -b $@"
 alias gcl="git clone $1"
-alias gcm='git commit -m "$@"'
-alias gcp='git commit -p'
-alias gd='git diff'
-alias gp='git push'
-alias gpl='git pull'
-alias gpm='git push origin master'
-alias gs='git status'
+alias gcm="git commit -m "$@""
+alias gcp="git commit -p"
+alias gd="git diff"
+alias gp="git push"
+alias gpl="git pull"
+alias gpm="git push origin master"
+alias gs="git status"
 
 # Dotfiles
-alias sz='source $HOME/.zshrc'
-alias vv='vim $DOTFILES/.vimrc'
-alias vz='vim $DOTFILES/.zshrc'
+alias sz="source $HOME/.zshrc"
+alias vv="vim $DOTFILES/.vimrc"
+alias vz="vim $DOTFILES/.zshrc"
 
 # Fix obvious typo's
-alias bew='brew'
-alias bre='brew'
 alias cd..='cd ..'
 alias pdw='pdw'
 
