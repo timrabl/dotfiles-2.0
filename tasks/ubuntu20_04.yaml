@@ -11,6 +11,10 @@
   import_role:
     name: systemd_resolved
 
+- name: Import bluetooth role
+  import_role:
+    name: bluetooth
+
 - name: Import apt role
   import_role:
     name: apt

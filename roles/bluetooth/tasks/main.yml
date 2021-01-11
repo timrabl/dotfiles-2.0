@@ -1,0 +1,25 @@
+---
+# tasks file for bluetooth
+
+- name: Change bluetooth controller mode to dual
+  become: true
+  tags:
+    - bluetooth
+  register: config
+  stat:
+    path: "{{ bluetooth.path | default(path) }}"
+  changed_when: false
+
+- name: Set bluetooth controller mode to dual
+  tags:
+    - bluetooth
+  become: true
+  lineinfile:
+    path: "{{ bluetooth.path | default(path) }}"
+    regexp: "ControllerMode"
+    line: "ControllerMode = {{ bluetooth.controller_mode | default(controller_mode) }}"
+  notify: Restart bluetooth
+  when: config.stat.exists
+
+- name: Flush restart handlers
+  meta: flush_handlers
