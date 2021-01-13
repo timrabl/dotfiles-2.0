@@ -42,9 +42,6 @@ gpgconf --launch gpg-agent
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-# Overwriting
-alias grep="ggrep" # requires -->  brew insall grep
-
 # Listing
 alias l.="ls -A | egrep "^\.""
 alias l="ls -l"
@@ -111,4 +108,12 @@ ex ()
   else
     echo "'$1' is not a valid file"
   fi
+}
+
+update() {
+  sudo apt-get update
+  sudo apt-get upgrade -y
+  sudo apt-get dist-upgrade -y
+  sudo apt-get autoremove -y
+  sudo apt-get autoclean
 }
